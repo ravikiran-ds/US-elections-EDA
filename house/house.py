@@ -88,6 +88,24 @@ candidate['percent']=100*(candidate.total_votes/candidate.complete_votes_2)
 candidate.fillna(0,inplace=True)
 candidate=candidate.rename(columns={'percent':'percent_per_district','complete_votes':'comp_votes_per_state','complte_votes_2':'comp_votes_per_district'})
 
-
-candidate.loc[candidate['district']=='Delaware at large',].plot.bar()
-#hello world
+#district wise results
+for st in candidate.district.unique():
+    df=candidate.loc[candidate['district']==st,['candidate','total_votes']]
+    df=df.sort_values(by=['total_votes'],axis=0,ascending=False)
+    plt.bar(height=df.total_votes,x=df.candidate)
+    plt.xticks(rotation='vertical')
+    plt.title(st)
+    plt.xlabel("Candidates")
+    plt.ylabel('no of votes')
+    plt.show()
+#state wise results
+for st in candidate.state.unique():
+    df=candidate.loc[candidate['state']==st,['candidate','total_votes']]
+    df=df.sort_values(by=['total_votes'],axis=0,ascending=False)
+    plt.bar(height=df.total_votes,x=df.candidate)
+    plt.xticks(rotation='vertical')
+    plt.title(st)
+    plt.xlabel("Candidates")
+    plt.ylabel('no of votes')
+    plt.show()
+    
