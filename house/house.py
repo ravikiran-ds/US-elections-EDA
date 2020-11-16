@@ -89,4 +89,5 @@ candidate.fillna(0,inplace=True)
 candidate=candidate.rename(columns={'percent':'percent_per_district','complete_votes':'comp_votes_per_state','complte_votes_2':'comp_votes_per_district'})
 
 
-
+candidate.loc[candidate['district']=='Delaware at large',].plot.bar()
+#hello world
